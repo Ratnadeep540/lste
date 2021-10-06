@@ -1,0 +1,36 @@
+<DOCTYPE>
+{% load static %}
+<html>
+<head>
+<meta charset="UTF-8">
+  <meta name="description" content="Free Web tutorials">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="John Doe">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+{% block styles %}
+<style type="text/css">
+
+</style>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+//background-image: url('{% static 'images/blackb.gwebp' %}');
+</script>
+{% endblock %}
+<head>
+<body id="bodyid" bgcolor="grey">
+<form method="POST" enctype="multipart/form-data">
+
+	<!-- Security token -->
+	{% csrf_token %}
+
+	<!-- Using the formset -->
+	{{ form.as_p }}
+	
+	<input type="submit" value="Submit">
+</form>
+
+
+<body>
+<html>

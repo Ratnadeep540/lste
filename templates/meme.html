@@ -1,0 +1,118 @@
+<DOCTYPE>
+{% load static %}
+<html>
+<head>
+<meta charset="UTF-8">
+  <meta name="description" content="Free Web tutorials">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="John Doe">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+{% block styles %}
+<style type="text/css">
+#dictionid {
+  width:500px;
+  height:300px;
+}
+body {
+  background-image: url('{% static 'images/blackbg.webp' %}');
+}
+#heading {
+  text-align:center;
+  color:BABC63;
+  font-size:4em;
+}
+p{
+  color:white;
+   margin-left:120px;
+}
+div{
+  float:left;
+  margin-left:50px;
+  margin-top:50px;
+  margin-right:50px;
+  margin-bottom:50px;
+  
+}
+#swts {
+  margin-left:50px;
+}
+img{
+  border:3px solid green;
+}
+#logo {
+  margin-left:0px;
+  margin-top:0px;
+  width:200px;
+  height:150px;
+  border:0px solid black;
+}
+#logotitle {
+  color:skyblue;
+  margin-left:35px;
+  margin-top:0px;
+}
+#logodiv {
+   margin-left:0px;
+   margin-top:0px;
+   
+}
+#lh {
+  width:100%;
+  heigth:100px;
+}
+#aid {
+  width:0px;
+  heigth:0px;
+}
+</style>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+//background-image: url('{% static 'images/blackb.gwebp' %}');
+</script>
+{% endblock %}
+<head>
+<body id="bodyid" bgcolor="black">
+<div id="lh">
+<div id="logodiv">
+<a id="aid" href="{% url 'index' %}">
+<img id="logo" src="{% static 'images/sklogo.png' value="Diction" %}"></img>
+<p id="logotitle">Sproud knowledge</p>
+</a>
+</div>
+
+<h1 id="heading">Learn English Through Memes</h1>
+
+<div>
+<br>
+
+
+<div id="memediv"><a href="{% url 'meme' %}">
+<img id="dictionid" src="{% static 'images/memeimg.jpg' value="Diction" %}"></img>
+<p>Memes</p>
+</a>
+</div>
+<div id="memediv"><a href="{% url 'meme' %}">
+<img id="dictionid" src="{% static 'images/memeimg.jpg' value="Diction" %}"></img>
+<p>Memes</p>
+</a>
+</div>
+<div id="memediv"><a href="{% url 'meme' %}">
+<img id="dictionid" src="{% static 'images/memeimg.jpg' value="Diction" %}"></img>
+<p>Memes</p>
+</a>
+</div>
+<div id="memediv"><a href="{% url 'meme' %}">
+<img id="dictionid" src="{% static 'images/memeimg.jpg' value="Diction" %}"></img>
+<p>Memes</p>
+</a>
+</div>
+<div id="memediv"><a href="{% url 'meme' %}">
+<img id="dictionid" src="{% static 'images/memeimg.jpg' value="Diction" %}"></img>
+<p>Memes</p>
+</a>
+</div>
+
+<body>
+<html>

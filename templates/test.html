@@ -1,0 +1,40 @@
+<DOCTYPE>
+{% load static %}
+<html>
+<head>
+<meta charset="UTF-8">
+  <meta name="description" content="Free Web tutorials">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="John Doe">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+{% block styles %}
+<style type="text/css">
+#ssa {
+    display = "none";
+}
+
+</style>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+<head>
+<body>
+<form class="probtn" action="" method="POST">
+{% csrf_token %}
+<button class="probtn" type="submit" name="btntestform1">click and pronounce</button>
+</form>
+{% block content %}
+    <img src="{{ imgop }}">
+{% endblock %}
+
+
+# Display image 
+{% if image %}
+<img src="{{ image.url }}" alt="img">
+{% endif %}
+<body>
+<html>

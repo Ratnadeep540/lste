@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Javascript Image Slider</title>
+	
+	</head>
+	<body>
+
+    	<style>
+        /*css/style.css */
+
+.slider{
+	margin:50px auto;
+	width:20%;
+}
+ 
+.img-box img{
+	width:100%;
+}
+
+.btn{
+	border:none;
+	outline:none;
+	background:#888;
+	padding:10px 30px;
+	font-size: 20px;
+	color:#ddd;
+	cursor: pointer;
+	margin:10px auto;			 
+}
+
+.btn:hover{
+	background: #111;
+}
+        </style>
+
+		<div class="slider">
+			<div class="img-box">
+				<img src="a.jpg" class="slider-img">
+			</div>
+
+			<button class="btn" onclick="prev()">Prev</button>
+			<button class="btn" onclick="next()">Next</button>
+		</div>
+
+		<script>
+  // 'js/mian.js'
+
+var slider_img = document.querySelector('.slider-img');
+var images = [
+'https://firebasestorage.googleapis.com/v0/b/health-report-334d5.appspot.com/o/bg.jpg?alt=media&token=3cbff548-70a3-4893-b9b3-701df41abb86', 
+'apple_small.png', 
+'avocado_small.jpg', 
+'banana_small.png', 'BlackberrySmall.jpg'];
+var i = 0;
+
+function prev(){
+	if(i <= 0) i = images.length;	
+	i--;
+	return setImg();			 
+}
+
+function next(){
+	if(i >= images.length-1) i = -1;
+	i++;
+	return setImg();			 
+}
+
+function setImg(){
+	return slider_img.setAttribute('src', "images/"+images[i]);
+	
+}
+        </script>
+
+	</body>
+</html>

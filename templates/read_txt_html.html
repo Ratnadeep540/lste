@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Read Text File</title>
+</head>
+
+<body>
+	<input type="file" name="inputfile"
+			id="inputfile">
+	<br>
+
+	<pre id="output"></pre>
+
+    <form onSubmit="WriteToFile(this)">
+<label>Type your first name:</label>
+<input type="text" name="FirstName" id="firstName" size="20">
+ <br>
+ </br>
+<label>Type your last name: </abel>
+<input type="text" name="LastName" id="lastName" size="20">
+ <br>
+ </br>
+<input type="submit" value="submit">
+</form>
+	
+	<script type="text/javascript">
+		document.getElementById('inputfile')
+			.addEventListener('change', function() {
+			
+			var fr=new FileReader();
+			fr.onload=function(){
+				document.getElementById('output')
+						.textContent=fr.result;
+			}
+			
+			fr.readAsText(this.files[0]);
+		})
+
+        function WriteToFile(passForm) {
+ 
+    set fso = CreateObject("Scripting.FileSystemObject"); 
+    set s   = fso.CreateTextFile("C:/1 Routine use/1_html_css_js/00001SPROUD_KNOWLEDGE/lste/templates/filename.txt", True);
+ 
+    var firstName = document.getElementById('FirstName');
+    var lastName  = document.getElementById('lastName');
+ 
+    s.writeline("First Name :" + FirstName);
+    s.writeline("Last Name :" + lastName);
+ 
+    s.writeline("-----------------------------");
+    s.Close();
+ }
+
+	</script>
+</body>
+
+</html>

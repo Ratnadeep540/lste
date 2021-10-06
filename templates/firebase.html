@@ -1,0 +1,255 @@
+<DOCTYPE>
+{% load static %}
+<html>
+<head>
+<title>health report</title>
+{% block styles %}
+<style>
+/* Add User Module */
+#add-user-module {
+    width: 30px;
+    margin-bottom: 1px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#add-user-module #open-add-user-form-btn {
+    background: #54bb7d;
+    font-size: 1.5em;
+    color: white;
+    padding-bottom: 5px;
+}
+
+#add-user-module form {
+    position: absolute;
+    padding: 10px;
+    width: 150px;
+    background-color: #e1e1e1;
+    border: 1px solid #999;
+    display: none;
+}
+
+#add-user-module form input {
+    width: 97%;
+    margin: 2px 0;
+}
+
+#add-user-module form button {
+    background: #54bb7d;
+    font-size: 1em;
+    padding: 0px 10px;
+    color: white;
+    margin-top: 10px;
+}
+
+#add-user-module:hover form {
+    display: block;
+}
+body1 {
+    background-image: url('{% static "images/hdbg.jpg" %}');
+    background-repeat: no-repeat;
+}
+#tcol {
+    text-color:white;
+}
+#fr {
+    background-color:green;
+}
+#odv {
+    background-color:pink;
+}
+#oye {
+    color:red;
+    text-align:center;
+}
+#realdb {
+    backgroun-color:pink;
+
+}
+</style>
+{% endblock %}
+<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content=
+		"width=device-width, initial-scale=1.0" />
+{% block scripts %}
+	<script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-storage.js"></script>
+	
+	<script id="mainscript">
+
+    const firebaseConfig = {
+    apiKey: "AIzaSyBDPVFR4fpJbP655fi0gECiX3rB_DEk1fE",
+    authDomain: "health-report-334d5.firebaseapp.com",
+    projectId: "health-report-334d5",
+    storageBucket: "health-report-334d5.appspot.com",
+    messagingSenderId: "192843149376",
+    appId: "1:192843149376:web:51df5b1c10bd7779be6fa5",
+    measurementId: "G-L1GFZMT005"
+      };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    var dname,dage,dtemp,dpulse,dresp,dbp,dspo2,dgrbs;
+
+    var database = firebase.database();
+    const db = firebase.getDatabase();
+
+
+database.ref('/').once('value', function(snapshot){
+  console.log(snapshot.val());
+});
+
+
+function t()
+{
+    // Get element
+  const preObject = document.getElementById('object');
+
+  // Create references
+  const dbRefObjec = firebase.database().ref().child('Patients');
+  const dbRefObject = dbRefObjec.child('Ratnadeep')
+  // Sync object changes
+  dbRefObject.on('value', snap => {
+    console.log(snap.val())
+    preObject.innerText = JSON.stringify(snap.val(), null, 3);
+  });
+}
+
+function rt()
+{
+    // Get element
+  const preObject = document.getElementById('obj');
+
+  // Create references
+  const dbRefObject = firebase.database().ref().child('Patients');
+  
+  // Sync object changes
+  dbRefObject.on('value', snap => {
+    console.log(snap.val())
+    preObject.innerText = JSON.stringify(snap.val(), null, 3);
+  });
+}
+
+function to()
+{
+    // Get element
+  const preObject = document.getElementById('o');
+
+  // Create references
+  const dbRefObjec = firebase.database().ref().child('Patients');
+  const dbRefObject = dbRefObjec.child('Ratnadeep')
+  // Sync object changes
+  dbRefObject.on('value', snap => {
+    console.log(snap.val())
+    preObject.innerText = snap.child('Name').val();
+  });
+}
+
+function pushData(){
+  dname = document.getElementById("name").value;
+  dage = document.getElementById("age").value;
+  dtemp = document.getElementById("temp").value;
+  dpulse = document.getElementById("pulse").value;
+  dresp = document.getElementById("resp").value;
+  dbp = document.getElementById("bp").value;
+  dspo2 = document.getElementById("spo2").value;
+  dgrbs = document.getElementById("grbs").value;
+  var dataRef = database.ref('/Patients').child(dname).push();
+  dataRef.set({
+    Name : dname,
+    Age : dage,
+    Temperature : dtemp,
+    Pulse : dpulse,
+    Respiration : dresp,
+    Bloodpressure : dbp,
+    spo2 : dspo2,
+    GRBS : dgrbs,
+    
+  });
+  alert("add successfully");
+}
+
+
+function setData(){
+  var data = document.getElementById("dataValue").value;
+  var dataRef = database.ref('/setData');
+  console.log(data)
+  dataRef.set({
+    value: data
+  });
+}
+
+setDataRef = database.ref("/setData");
+setDataRef.on('child_changed', function(snapshot) {
+  console.log("Below is the data from child_changed");
+  console.log(snapshot.val());
+});
+
+pushDataRef = database.ref("/pushData");
+pushDataRef.on("child_added", function(snapshot){
+  console.log("Below is the data from child_added");
+  console.log(snapshot.val());
+});
+
+database.ref('/pushData').once('value', function(snapshot){
+  snapshot.forEach(function(data){
+    console.log("Below are the child keys of the values in 'pushData'")
+    console.log(data.key);
+  });
+  console.log(Object.keys(snapshot.val()));
+});
+
+var testx = "deep is testing "
+testx.id = "txtt"
+
+    </script>
+
+
+    {% endblock %}
+</head>
+<body bgcolor="grey">
+<br>
+<br>
+    <section id="add-user-module"> <button id="open-add-user-form-btn">+</button>
+    <form>
+        <h2>Patient details</h2>
+        Name: <input type="value" id="name"></input>
+        <br>
+        Age: <input type="value" id="age"></input>
+        <br>
+        Temperature: <input type="value" id="temp"></input>
+        <br>
+        Pulse: <input type="value" id="pulse"></input>
+        <br>
+        Respiration: <input type="value" id="resp"></input>
+        <br>
+        Blood pressure: <input type="value" id="bp"></input>
+        <br>
+        spo2: <input type="value" id="spo2"></input>
+        <br>
+        GRBS: <input type="value" id="grbs"></input>
+        <br>
+        <button onClick="pushData()">Add</button>
+    </form>
+    <br>
+   
+
+
+</section>
+<!-- add user module -->l
+<div id="fr">
+
+</div>    
+
+  
+
+
+
+  
+</body>
+
+</html>
